@@ -10,7 +10,7 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  imageUrl="https://localhost:44388";
+  imageUrl="http://localhost:3000";
   cars:Car[]=[];
   currentImage : CarImage[]=[];
   dataLoaded=false;

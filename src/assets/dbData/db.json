@@ -1,0 +1,15 @@
+{
+    "posts": [
+      { "id": 1, "title": "json-server", "author": "typicode" }
+    ],
+    "login":[
+        { "id": 1, "title": "json-server", "author": "typicode" }
+    ],
+    "auth" : [
+        { "id": 1, "title": "json-server", "author": "typicode" }
+    ],
+    "register" : [
+        { "id": 1, "title": "json-server", "author": "typicode" }
+    ],
+    "profile": { "name": "typicode" }
+}

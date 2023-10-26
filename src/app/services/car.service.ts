@@ -12,7 +12,7 @@ import { CarStandart } from '../models/carStandart';
   providedIn: 'root'
 })
 export class CarService {
-  apiUrl="https://localhost:44388/api/";
+  apiUrl="http://localhost:3000/api/";
   constructor(private httpClient:HttpClient) { }
 
   getCars():Observable<ListResponseModel<Car>>{

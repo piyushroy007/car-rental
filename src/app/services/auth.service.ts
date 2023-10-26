@@ -16,7 +16,7 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class AuthService {
 
-  apiUrl="https://localhost:44388/api/auth/";
+  apiUrl="http://localhost:3000/api/auth/";
   name: string = "";
   surname:string="";
   userName:string="";
