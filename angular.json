@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "myApp": {
+    "carrental": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/my-app",
+            "outputPath": "dist/car-rental",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -30,9 +30,15 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/jquery/dist/jquery.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -65,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "myApp:build:production"
+              "browserTarget": "carrental:build:production"
             },
             "development": {
-              "browserTarget": "myApp:build:development"
+              "browserTarget": "carrental:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "myApp:build"
+            "browserTarget": "carrental:build"
           }
         },
         "test": {
