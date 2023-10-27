@@ -8,13 +8,17 @@ import { HomeComponent } from './components/home/home.component';
 import  {HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FooterComponent } from './components/footer/footer.component';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { LoginComponent } from './components/auth/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -23,8 +27,15 @@ import { FooterComponent } from './components/footer/footer.component';
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
     }),
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

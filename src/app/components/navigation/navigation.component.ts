@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { CarImage } from 'src/app/models/carImage';
 
 @Component({
   selector: 'app-navigation',
@@ -15,6 +16,7 @@ export class NavigationComponent {
   lastName=this.authService.name;
   firstName=this.authService.surname;
   userRol=this.authService.role
+  date= new Date();
   constructor(
     private authService:AuthService,
     private toasterService:ToastrService,
@@ -23,9 +25,12 @@ export class NavigationComponent {
   ) { }
 
   ngOnInit(): void {
-    if(this.isAuthenticated()){
-      this.authService.userDetailFromToken(); 
-    } 
+    console.log("****************************nav component",this.lastName,this.firstName,this.authService.name);
+  }
+
+  callServer(){
+    console.log("*************callServer called");
+    this.authService.testJsonServer();
   }
   
   isAuthenticated(){

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 // import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { LoginModel } from '../models/loginModel';
 import { PasswordChangeModel } from '../models/passwordChangeModel';
 import { RegisterModel } from '../models/registerModel';
@@ -10,13 +10,14 @@ import { ResponseModel } from '../models/responseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { TokenModel } from '../models/tokenModel';
 import { LocalStorageService } from './local-storage.service';
+import { CarImage } from '../models/carImage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  apiUrl="http://localhost:3000/api/auth/";
+  apiUrl="http://localhost:3000/";
   name: string = "";
   surname:string="";
   userName:string="";
@@ -34,7 +35,14 @@ export class AuthService {
   ) { }
 
   login(loginModel:LoginModel):Observable<SingleResponseModel<TokenModel>>{
-    return this.httpClient.post<SingleResponseModel<TokenModel>>(this.apiUrl+"login",loginModel)
+    const body=JSON.stringify(loginModel);
+    console.log("*********************",body);
+    return this.httpClient.post<SingleResponseModel<TokenModel>>(this.apiUrl+"login",body,{
+      headers : new HttpHeaders({
+        'api-name':"login",
+        "my-head":"okkkkkk"
+      }),
+    });
   }
 
   register(registerModel:RegisterModel):Observable<SingleResponseModel<TokenModel>>{
@@ -45,7 +53,43 @@ export class AuthService {
     this.localStorage.clear()
     this.onRefresh();
     this.router.navigate(['/login']);
-}
+  }
+
+  // testJsonServer():Observable<CarImage[]>{
+  //   console.log("*************testJsonServer called");
+  //   return this.httpClient.get<CarImage[]>(this.apiUrl+"login");
+  // }
+  testJsonServer(){
+    console.log("*************testJsonServer called");
+    return this.httpClient
+    .get(this.apiUrl+"auth",
+      {
+        headers : new HttpHeaders({
+          'api-name':"testJsonServer",
+          "my-head":"okkkkkk"
+        }),
+      }
+    )
+    .pipe(
+      map((res)=>{
+        let result = [];
+        for( let key in res){
+          result.push({key});
+          console.log("key",key,res);
+        }
+        return result;
+      })
+    )
+    .subscribe((res)=>{
+      console.log("Subs:",res);
+    })
+  }
+  // testJsonServer(){
+  //   console.log("*************testJsonServer called");
+  //   return this.httpClient.get<CarImage[]>(this.apiUrl+"login").subscribe(res=>{
+  //     console.log("*************",res[0]);
+  //   })
+  // }
 
   isAuthenticated(){
     // if(this.localStorage.getItem("token")){
@@ -72,7 +116,7 @@ export class AuthService {
 
     let name = "Piyush Kumar Roy";
     this.name = name.split(' ')[0];
-    let surname = "Roy";
+    let surname = "Kumar Roy";
     this.surname = surname.split(' ')[1];
     this.roles = ["admin","View"];
     this.role = "admin";

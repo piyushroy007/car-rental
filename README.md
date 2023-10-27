@@ -32,7 +32,7 @@ https://www.npmjs.com/package/json-server
 Install JSON Server
         npm install -g json-server
 
-GO TO : cd src/assets/data      
+GO TO : cd src/assets/dbData      
 Start JSON Server
         json-server --watch db.json
  http://localhost:3000/posts/1, you'll get
