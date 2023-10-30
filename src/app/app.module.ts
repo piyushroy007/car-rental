@@ -11,6 +11,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LoginComponent } from './components/auth/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StringPipe } from './pipes/string.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavigationComponent,
     HomeComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    StringPipe
   ],
   imports: [
     BrowserModule,

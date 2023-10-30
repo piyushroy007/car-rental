@@ -5,9 +5,10 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { authGuard } from './gaurd/auth.guard';
 
 const routes: Routes = [
-  {path:"",pathMatch:"full",component:LoginComponent},  
+  {path:"",pathMatch:"full",redirectTo:"login"},  
   {path:"home",component:HomeComponent,canActivate:[authGuard]},
   {path:"login",component:LoginComponent},
+  {path:"*",component:LoginComponent},
 ];
 
 @NgModule({
