@@ -13,6 +13,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StringPipe } from './pipes/string.pipe';
 
+console.log("app module is loaded");
 @NgModule({
   declarations: [
     AppComponent,

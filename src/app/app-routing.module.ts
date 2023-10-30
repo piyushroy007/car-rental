@@ -8,6 +8,7 @@ const routes: Routes = [
   {path:"",pathMatch:"full",redirectTo:"login"},  
   {path:"home",component:HomeComponent,canActivate:[authGuard]},
   {path:"login",component:LoginComponent},
+  {path:"cars",loadChildren: ()=> import('./components/cars/cars.module').then(m=>m.CarsModule)},
   {path:"*",component:LoginComponent},
 ];
 
