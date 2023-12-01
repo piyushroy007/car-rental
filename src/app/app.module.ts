@@ -12,6 +12,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LoginComponent } from './components/auth/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StringPipe } from './pipes/string.pipe';
+import { RegisterComponent } from './components/auth/register/register.component';
 
 console.log("app module is loaded");
 @NgModule({
@@ -21,7 +22,8 @@ console.log("app module is loaded");
     HomeComponent,
     FooterComponent,
     LoginComponent,
-    StringPipe
+    StringPipe,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
