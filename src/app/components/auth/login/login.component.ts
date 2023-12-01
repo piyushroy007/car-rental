@@ -3,6 +3,7 @@ import { FormBuilder,FormGroup,Validators} from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { SubscriptionModel } from 'src/app/models/subscription';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   loginForm:FormGroup = new FormGroup({});
   dataLoaded=false
+  dummy : SubscriptionModel[] = [];
   constructor(
     private  formBuilder:FormBuilder,
     private authService:AuthService,
@@ -22,6 +24,10 @@ export class LoginComponent {
 
   ngOnInit(): void {
   this.createLoginForm();
+  // this.authService.getSubscriptions().subscribe(data=>{
+  //   console.log("88888888888888888",data);
+  //   this.dummy = data;
+  // });
 }
   createLoginForm(){
     this.loginForm=this.formBuilder.group({

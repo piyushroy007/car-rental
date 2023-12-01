@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 // import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable, map } from 'rxjs';
+import { Observable, Subscription, map, of } from 'rxjs';
 import { LoginModel } from '../models/loginModel';
 import { PasswordChangeModel } from '../models/passwordChangeModel';
+import { SubscriptionModel } from '../models/subscription';
 import { RegisterModel } from '../models/registerModel';
 import { ResponseModel } from '../models/responseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
@@ -27,6 +28,44 @@ export class AuthService {
   isLoggedIn: boolean = false;
   userId: number = 0;
   email:string = "";
+  subscriptions: SubscriptionModel[] = [
+    {
+      id: '1',
+      userId: '1',
+      name: 'Mobile service',
+      price: 2.2
+    },
+    {
+      id: '2',
+      userId: '1',
+      name: 'Text service',
+      price: 0.44
+    },
+    {
+      id: '3',
+      userId: '2',
+      name: 'Mobile service',
+      price: 3.1
+    },
+    {
+      id: '1',
+      userId: '3',
+      name: 'Mobile service',
+      price: 5
+    },
+    {
+      id: '2',
+      userId: '3',
+      name: 'Text service',
+      price: 66.98
+    },
+    {
+      id: '3',
+      userId: '3',
+      name: 'Abroad charges',
+      price: 12.4
+    }
+  ];
 
   constructor(
     private httpClient:HttpClient,
@@ -59,6 +98,8 @@ export class AuthService {
   //   console.log("*************testJsonServer called");
   //   return this.httpClient.get<CarImage[]>(this.apiUrl+"login");
   // }
+
+  // Dummy Code to practise obserable pipe and map line 103 - 127
   testJsonServer(){
     console.log("*************testJsonServer called");
     return this.httpClient
@@ -83,6 +124,7 @@ export class AuthService {
     .subscribe((res)=>{
       console.log("Subs:",res);
     })
+    
   }
   // testJsonServer(){
   //   console.log("*************testJsonServer called");
@@ -90,6 +132,19 @@ export class AuthService {
   //     console.log("*************",res[0]);
   //   })
   // }
+
+  // Dummy Code to practise api data manupulation line 134 - 144
+
+  // public getSubscriptions(): Observable<SubscriptionModel[]> {
+  //   this.subscriptions.forEach(this.formatPrice);
+  //   return of(this.subscriptions);
+  // }
+  // public formatPrice(testModel: SubscriptionModel) {
+  //   console.log("testModel.price :",testModel.price);
+  //   console.log("testModel.price.toFixed(1) :",testModel.price.toFixed(1));
+  //   testModel.price = Number(Number(testModel.price).toFixed(2));
+  // };
+  
 
   isAuthenticated(){
     // if(this.localStorage.getItem("token")){

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, map } from 'rxjs';
@@ -17,6 +17,8 @@ export class NavigationComponent {
   firstName=this.authService.surname;
   userRol=this.authService.role
   date= new Date();
+  @ViewChild('inputf') myInputVariable2: ElementRef= {} as ElementRef;
+
   constructor(
     private authService:AuthService,
     private toasterService:ToastrService,
@@ -31,6 +33,7 @@ export class NavigationComponent {
   callServer(){
     console.log("*************callServer called");
     this.authService.testJsonServer();
+    console.log("nativeElement.value",this.myInputVariable2.nativeElement.innerHTML);
   }
   
   isAuthenticated(){
